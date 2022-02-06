@@ -5,12 +5,12 @@
  * Compiler:  Keil for ARM
  */
 
-#include <stm32f103x6.h>
+#include "main.h"
 
 int main (void)
  { 
-   // Write your code here
+   RCC->APB2ENR|= 0xFC;
+	remoto_init();
    while (1)
       ;
-   return 0;
  }   
