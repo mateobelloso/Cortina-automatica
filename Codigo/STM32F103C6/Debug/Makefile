@@ -28,14 +28,16 @@ BIN2HEX=fromelf.exe
 #        C:/Users/mateo/Desktop/Taler de Proyecto I/TP 4/Codigo/STM32F103C6/startup_stm32f103.s
 #     C:/Users/mateo/Desktop/Taler de Proyecto I/TP 4/Codigo/STM32F103C6/Debug/remoto.o: TOOL=CC
 #        C:/Users/mateo/Desktop/Taler de Proyecto I/TP 4/Codigo/STM32F103C6/remoto.c
+#     C:/Users/mateo/Desktop/Taler de Proyecto I/TP 4/Codigo/STM32F103C6/Debug/motor.o: TOOL=CC
+#        C:/Users/mateo/Desktop/Taler de Proyecto I/TP 4/Codigo/STM32F103C6/motor.c
 
 # Build tree:
 all:	Debug
 
 Debug:	Debug.elf
 
-Debug.elf:	main.o SYSTEM~1.o STARTU~1.o remoto.o 
-	$(LD)  $(LDFLAGS)  "main.o" "SYSTEM~1.o" "STARTU~1.o" "remoto.o" --output "Debug.elf"
+Debug.elf:	main.o SYSTEM~1.o STARTU~1.o remoto.o motor.o 
+	$(LD)  $(LDFLAGS)  "main.o" "SYSTEM~1.o" "STARTU~1.o" "remoto.o" "motor.o" --output "Debug.elf"
 
 main.o:	../main.c 
 	$(CC) $(CCFLAGS)  "../main.c" -c -o "main.o"
@@ -49,6 +51,9 @@ STARTU~1.o:	../startup_stm32f103.s
 remoto.o:	../remoto.c 
 	$(CC) $(CCFLAGS)  "../remoto.c" -c -o "remoto.o"
 
+motor.o:	../motor.c 
+	$(CC) $(CCFLAGS)  "../motor.c" -c -o "motor.o"
+
 # tidy - delete all temporary files which are not involved in the target generation
 tidy:
 
@@ -59,3 +64,4 @@ clean:	tidy
 	rm -rf SYSTEM~1.o
 	rm -rf STARTU~1.o
 	rm -rf remoto.o
+	rm -rf motor.o

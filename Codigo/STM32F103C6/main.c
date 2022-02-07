@@ -9,8 +9,28 @@
 
 int main (void)
  { 
-   RCC->APB2ENR|= 0xFC;
+	static uint8_t cadena[20]= "";
+	RCC->APB2ENR|= 0xFC;
 	remoto_init();
+	motor_init();
    while (1)
-      ;
+	{
+		if(get_se_envio_comando())
+		{
+			remoto_get_string_from_buffer(cadena);
+			if(cadena[0]=='d')
+			{
+				motor_girar_derecha();
+			}
+			if(cadena[0]=='i')
+			{
+				motor_girar_izquierda();
+			}
+			if(cadena[0]=='p')
+			{
+				motor_parar();
+			}
+			set_se_envio_comando(0);
+		}
+	}
  }   
