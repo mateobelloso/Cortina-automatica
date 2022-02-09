@@ -10,11 +10,15 @@
 int main (void)
  { 
 	static uint8_t cadena[20]= "";
+	static uint32_t medida=0;
 	RCC->APB2ENR|= 0xFC;
 	remoto_init();
 	motor_init();
+	sensor_init();
    while (1)
 	{
+		sensor_medir();
+		medida= sensor_get_valor();
 		if(get_se_envio_comando())
 		{
 			remoto_get_string_from_buffer(cadena);
