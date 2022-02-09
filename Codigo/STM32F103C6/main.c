@@ -15,6 +15,9 @@ int main (void)
 	motor_init();
    while (1)
 	{
+	    sEoS_dispatch_Tareas();
+	   
+	   
 		if(get_se_envio_comando())
 		{
 			remoto_get_string_from_buffer(cadena);

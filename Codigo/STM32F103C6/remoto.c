@@ -28,14 +28,15 @@ void USART1_IRQHandler()
 	}
 }
 
-void remoto_get_string_from_buffer(uint8_t * cadena)
+uint8_t remoto_get_string_from_buffer(uint8_t * cadena)
 {
 	uint8_t i;
 	for(i=0;BUFFER_RX[i]!='\0';i++)
-	{
+	{	
 		cadena[i]= BUFFER_RX[i];
 	}
 	cadena[i]= '\0';
+	return i;
 }
 
 uint8_t get_se_envio_comando()
@@ -47,3 +48,19 @@ void set_se_envio_comando(uint8_t c)
 {
 	se_envio_comando= c;
 }
+
+uint8_t checkearBluetooth(uint8_t *dato){
+	 uint8_t cadena[20];
+	 uint8_t cantidad,i;
+	cantidad=remoto_get_string_from_buffer(cadena);
+	 for(i=0;cadena[i] != '\0';i++)
+	{	
+		*dato=*dato*10+cadena[i]-'0';
+	}
+	 
+	
+	
+	 return(cantidad);
+   }
+   
+   
