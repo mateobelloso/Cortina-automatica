@@ -1,14 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' standalone='yes'?>
 <WORKSPACE>
- <FRAME activewindow="1">
+ <FRAME activewindow="0">
   <PLACEMENT>2c00000002000000030000000083ffff0083ffffffffffffffffffff8300000009000000d4040000d0020000</PLACEMENT>
   <WINDOW type="default" module="ISIS"/>
   <WINDOW type="default" module="VSMSTUDIO">
-   <FILE LINE="12" NAME="STM32F103C6/main.c" INDEX="0"/>
+   <FILE LINE="12" FIRST="4" NAME="STM32F103C6/main.c" INDEX="0"/>
    <FILE LINE="7" NAME="STM32F103C6/main.h" INDEX="20"/>
-   <FILE LINE="37" FIRST="18" NAME="STM32F103C6/remoto.c" INDEX="17"/>
+   <FILE LINE="37" ACTIVE="TRUE" FIRST="17" NAME="STM32F103C6/remoto.c" INDEX="17"/>
    <FILE NAME="STM32F103C6/remoto.h"/>
-   <FILE LINE="5" ACTIVE="TRUE" NAME="STM32F103C6/motor.c" INDEX="17"/>
+   <FILE LINE="5" NAME="STM32F103C6/motor.c" INDEX="17"/>
    <FILE LINE="8" NAME="STM32F103C6/motor.h" INDEX="24"/>
    <FILE LINE="20" NAME="STM32F103C6/sensor.c" INDEX="3"/>
    <FILE LINE="8" NAME="STM32F103C6/sensor.h" INDEX="33"/>
