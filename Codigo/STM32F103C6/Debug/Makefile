@@ -19,6 +19,7 @@ CC=armcc.exe
 LD=armlink.exe
 ASM=armasm.exe
 BIN2HEX=fromelf.exe
+<<<<<<< HEAD
 #  C:/Users/Nicol/Desktop/Taller de Proyecto-Cortina Automatica-/Cortina-automatica/Codigo/STM32F103C6/Debug/Debug.elf: TOOL=LD
 #     C:/Users/Nicol/Desktop/Taller de Proyecto-Cortina Automatica-/Cortina-automatica/Codigo/STM32F103C6/Debug/main.o: TOOL=CC
 #        C:/Users/Nicol/Desktop/Taller de Proyecto-Cortina Automatica-/Cortina-automatica/Codigo/STM32F103C6/main.c
@@ -34,14 +35,34 @@ BIN2HEX=fromelf.exe
 #        C:/Users/Nicol/Desktop/Taller de Proyecto-Cortina Automatica-/Cortina-automatica/Codigo/STM32F103C6/sEOS.c
 #     C:/Users/Nicol/Desktop/Taller de Proyecto-Cortina Automatica-/Cortina-automatica/Codigo/STM32F103C6/Debug/cortina.o: TOOL=CC
 #        C:/Users/Nicol/Desktop/Taller de Proyecto-Cortina Automatica-/Cortina-automatica/Codigo/STM32F103C6/cortina.c
+=======
+#  C:/Users/mateo/Desktop/Taler de Proyecto I/TP 4/Codigo/STM32F103C6/Debug/Debug.elf: TOOL=LD
+#     C:/Users/mateo/Desktop/Taler de Proyecto I/TP 4/Codigo/STM32F103C6/Debug/main.o: TOOL=CC
+#        C:/Users/mateo/Desktop/Taler de Proyecto I/TP 4/Codigo/STM32F103C6/main.c
+#     C:/Users/mateo/Desktop/Taler de Proyecto I/TP 4/Codigo/STM32F103C6/Debug/SYSTEM~1.o: TOOL=CC
+#        C:/Users/mateo/Desktop/Taler de Proyecto I/TP 4/Codigo/STM32F103C6/system_stm32f1xx.c
+#     C:/Users/mateo/Desktop/Taler de Proyecto I/TP 4/Codigo/STM32F103C6/Debug/STARTU~1.o: TOOL=ASM
+#        C:/Users/mateo/Desktop/Taler de Proyecto I/TP 4/Codigo/STM32F103C6/startup_stm32f103.s
+#     C:/Users/mateo/Desktop/Taler de Proyecto I/TP 4/Codigo/STM32F103C6/Debug/remoto.o: TOOL=CC
+#        C:/Users/mateo/Desktop/Taler de Proyecto I/TP 4/Codigo/STM32F103C6/remoto.c
+#     C:/Users/mateo/Desktop/Taler de Proyecto I/TP 4/Codigo/STM32F103C6/Debug/motor.o: TOOL=CC
+#        C:/Users/mateo/Desktop/Taler de Proyecto I/TP 4/Codigo/STM32F103C6/motor.c
+#     C:/Users/mateo/Desktop/Taler de Proyecto I/TP 4/Codigo/STM32F103C6/Debug/sensor.o: TOOL=CC
+#        C:/Users/mateo/Desktop/Taler de Proyecto I/TP 4/Codigo/STM32F103C6/sensor.c
+>>>>>>> baaef52ea7dda6a97d895708c5ee8cd0636c3bdc
 
 # Build tree:
 all:	Debug
 
 Debug:	Debug.elf
 
+<<<<<<< HEAD
 Debug.elf:	main.o SYSTEM~1.o STARTU~1.o remoto.o motor.o sEOS.o cortina.o 
 	$(LD)  $(LDFLAGS)  "main.o" "SYSTEM~1.o" "STARTU~1.o" "remoto.o" "motor.o" "sEOS.o" "cortina.o" --output "Debug.elf"
+=======
+Debug.elf:	main.o SYSTEM~1.o STARTU~1.o remoto.o motor.o sensor.o 
+	$(LD)  $(LDFLAGS)  "main.o" "SYSTEM~1.o" "STARTU~1.o" "remoto.o" "motor.o" "sensor.o" --output "Debug.elf"
+>>>>>>> baaef52ea7dda6a97d895708c5ee8cd0636c3bdc
 
 main.o:	../main.c 
 	$(CC) $(CCFLAGS)  "../main.c" -c -o "main.o"
@@ -58,11 +79,16 @@ remoto.o:	../remoto.c
 motor.o:	../motor.c 
 	$(CC) $(CCFLAGS)  "../motor.c" -c -o "motor.o"
 
+<<<<<<< HEAD
 sEOS.o:	../sEOS.c 
 	$(CC) $(CCFLAGS)  "../sEOS.c" -c -o "sEOS.o"
 
 cortina.o:	../cortina.c 
 	$(CC) $(CCFLAGS)  "../cortina.c" -c -o "cortina.o"
+=======
+sensor.o:	../sensor.c 
+	$(CC) $(CCFLAGS)  "../sensor.c" -c -o "sensor.o"
+>>>>>>> baaef52ea7dda6a97d895708c5ee8cd0636c3bdc
 
 # tidy - delete all temporary files which are not involved in the target generation
 tidy:
@@ -75,5 +101,9 @@ clean:	tidy
 	rm -rf STARTU~1.o
 	rm -rf remoto.o
 	rm -rf motor.o
+<<<<<<< HEAD
 	rm -rf sEOS.o
 	rm -rf cortina.o
+=======
+	rm -rf sensor.o
+>>>>>>> baaef52ea7dda6a97d895708c5ee8cd0636c3bdc
