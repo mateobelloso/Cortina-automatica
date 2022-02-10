@@ -76,13 +76,14 @@ void sEOS_Dispatch_Tareas()	//Dispatcher de tareas. esta funcion chequea los fla
 					cortina_posicionarCortina(100);
 					flag_cortinaLibre= 0;
 					flag_cortinaCerrada= 1;
-				}else	//En el caso que todavia no sea el horario, se mantiene la luz deseada en la habitacion con el sensor
-				{
+				}else
+				{	//En el caso que todavia no sea el horario, se mantiene la luz deseada en la habitacion con el sensor
 					cortina_controlSensor();	
 				}
 			}
-		}else 
-		{//Modo Manual
+		}
+		if(!automatico)	//Modo Manual
+		{
 			if (flag_posicionarCortina)	// Posicionar cortina
 			{
 				cortina_posicionarCortina(porcentaje); //Funcion que posiciona la cortina un porcentaje dado por el usuario y queda fija

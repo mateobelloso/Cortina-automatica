@@ -51,7 +51,6 @@ void set_se_envio_comando(uint8_t c)
 
 void checkearBluetooth(uint8_t *porcentaje, tiempo *horaS, tiempo *horaB,uint8_t * cantidad)
 {
-	static uint8_t valor;
 	uint8_t cadena[20];
 	uint8_t i;
 	*cantidad=remoto_get_string_from_buffer(cadena);
@@ -69,12 +68,10 @@ void checkearBluetooth(uint8_t *porcentaje, tiempo *horaS, tiempo *horaB,uint8_t
 		for(i=0;i<2;i++)
 		{
 			(*horaS).horas= (*horaS).horas * 10 + cadena[i] - '0';
-			valor= (*horaS).horas;
 		}
 		for(;i<4;i++)
 		{
 			(*horaS).minutos= (*horaS).minutos * 10 + cadena[i] - '0';
-			valor=(*horaS).minutos;
 		}
 		(*horaS).segundos= 0;
 		(*horaB).horas=0;
@@ -82,15 +79,11 @@ void checkearBluetooth(uint8_t *porcentaje, tiempo *horaS, tiempo *horaB,uint8_t
 		for(;i<6;i++)
 		{
 			(*horaB).horas= (*horaB).horas * 10 + cadena[i] - '0';
-			valor= (*horaB).horas;
 		}
 		for(;i<8;i++)
 		{
 			(*horaB).minutos= (*horaB).minutos * 10 + cadena[i] - '0';
-			valor=(*horaB).minutos;
 		}
 		(*horaB).segundos= 0;
 	}
 }
-
-   

@@ -18,4 +18,6 @@
 	#include "sEOS.h"
 	#include "cortina.h"
 
+	void delay_us (uint16_t t);
+
 #endif

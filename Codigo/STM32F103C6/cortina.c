@@ -52,15 +52,5 @@ void cortina_controlSensor()
 uint8_t cortina_getCantidadMover()
 {	     
 	return cantidadMover;
-}	
-	       
-	 
-   
-	 
-	 
-	 
- 
-	 
-//100 %Full Cerrada
-//0% %nada cerrada    
- 
+}
+
