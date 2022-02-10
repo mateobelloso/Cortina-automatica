@@ -15,6 +15,7 @@ int main (void)
 	remoto_init();
 	motor_init();
 	sensor_init();
+	reloj_init();
 	SysTick_Config(SystemCoreClock/10);
    while (1)
 	{

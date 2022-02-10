@@ -1,6 +1,6 @@
 #include "sensor.h"
 
-static uint32_t valor=0;
+static uint32_t valor;
 
 void delay_us (uint16_t t)  //Funcion que genera un delay de t micro-segundos 
 {
@@ -28,9 +28,9 @@ void sensor_medir()
 	valor= ADC1->DR;
 }
 
-uint32_t sensor_get_valor()
+void sensor_get_valor(uint32_t *medida)
 {
-	return valor;
+	*medida= valor;
 }
 
 void sensor_desactivar()

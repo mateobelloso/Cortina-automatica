@@ -6,7 +6,7 @@
 
 	void sensor_init(void);
 	void sensor_medir(void);
-	uint32_t sensor_get_valor(void);
+	void sensor_get_valor(uint32_t *medida);
 	void sensor_desactivar(void);
 
 #endif

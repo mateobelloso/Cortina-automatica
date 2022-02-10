@@ -13,7 +13,7 @@ static uint8_t flag_cortinaLibre=1;
 static uint8_t flag_actualizarHora=0;	//Flag para actulizar la hora
 static uint8_t contadorReloj=0;	//Contador para controlar cuando activar el flag de la tarea del reloj
 
-static uint8_t flag_cortinaCerrada=0;	//Flag que indica que la cortina esta cerrada totalmente en modo automatico
+static uint8_t flag_cortinaCerrada=1;	//Flag que indica que la cortina esta cerrada totalmente en modo automatico
 
 static uint8_t porcentaje;	//Variable que va a contener el porcentaje deseado que ingreso el usuario
 static tiempo horaSubir,horaBajar;	//Variables que almacenan los horarios ingresados por los usuarios
@@ -26,7 +26,7 @@ static uint8_t cantidad=0;
 
 void sEOS_SCH_Tareas()	//Planificador de las tareas. esta funcion chequea si pasaron 0.5 segundos 
 {
-	if(++contadorReloj==100)			//Contador suma 1 cada 100 ms, al llegar a 5 checkea si tiene alguna tarea pendiente
+	if(++contadorReloj==10)			//Contador suma 1 cada 100 ms, al llegar a 5 checkea si tiene alguna tarea pendiente
 	{
 		flag_actualizarHora=1;
 		contadorReloj=0;
@@ -41,12 +41,12 @@ void sEOS_Dispatch_Tareas()	//Dispatcher de tareas. esta funcion chequea los fla
 		reloj_actualizarHora();
 		flag_actualizarHora= 0;
 	}
-	if(flag_cortinaLibre)
-	{ 
-		if((flag100ms) && (get_se_envio_comando())) //Checkea el bluetooth si tiene alguna orden pendiente
+	if((flag_cortinaLibre)&&(flag100ms))
+	{
+		flag100ms= 0;
+		if(get_se_envio_comando()) //Checkea el bluetooth si tiene alguna orden pendiente
 		{
-			flag100ms= 0;
-			cantidad=checkearBluetooth(&porcentaje,horaSubir,horaBajar);
+			checkearBluetooth(&porcentaje,&horaSubir,&horaBajar,&cantidad);
 			if(cantidad<=3)
 			{
 				automatico=0;
@@ -63,7 +63,7 @@ void sEOS_Dispatch_Tareas()	//Dispatcher de tareas. esta funcion chequea los fla
 		{
 			if(flag_cortinaCerrada)	//Si la cortina esta cerrada al 100 por el horario tengo que esperar al horario programado para subir la cortina
 			{
-				if(reloj_compararHorario(horaSubir))	//Si es el horario de subir la cortina la subo
+				if(reloj_compararHorario(&horaSubir))	//Si es el horario de subir la cortina la subo
 				{
 					cortina_posicionarCortina(0);
 					flag_cortinaLibre= 0;
@@ -71,7 +71,7 @@ void sEOS_Dispatch_Tareas()	//Dispatcher de tareas. esta funcion chequea los fla
 				}
 			}else
 			{
-				if(reloj_compararHorario(horaBajar))	//Si es el horario programado de bajada bajo la cortina
+				if(reloj_compararHorario(&horaBajar))	//Si es el horario programado de bajada bajo la cortina
 				{
 					cortina_posicionarCortina(100);
 					flag_cortinaLibre= 0;

@@ -8,6 +8,6 @@
 	uint8_t get_se_envio_comando(void);
 	uint8_t remoto_get_string_from_buffer(uint8_t * cadena);
 	void set_se_envio_comando(uint8_t c);
-	uint8_t checkearBluetooth(uint8_t *porcentaje, tiempo horaS, tiempo horaB);
+	void checkearBluetooth(uint8_t *porcentaje, tiempo *horaS, tiempo *horaB,uint8_t * cantidad);
 
 #endif

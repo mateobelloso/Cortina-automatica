@@ -1,7 +1,7 @@
 #include "cortina.h"
 
 static uint8_t cantidadMover;
-static uint8_t porcentajeCortinaCerrada=0;
+static uint8_t porcentajeCortinaCerrada=5;
 
 
 
@@ -22,13 +22,16 @@ void cortina_posicionarCortina(uint8_t porcentaje)
 
 void cortina_controlSensor()
 {
+	static uint32_t medida;
 	sensor_medir();
-	if((sensor_get_valor()>VALORMIN) && (sensor_get_valor()<VALORMAX))	//Si estoy en el valor deseado detengo la cortina
+	delay_us(100);
+	sensor_get_valor(&medida);
+	if((medida>=356) && (medida<=411))	//Si estoy en el valor deseado detengo la cortina
 	{
 		motor_parar();
 	}else
 	{
-		if(sensor_get_valor()>VALORMAX)	//Si el valor leido por el sensor es mayor que el valor MAX significa que la habitacion esta mas oscura de lo que se quiere
+		if(medida>VALORMAX)	//Si el valor leido por el sensor es mayor que el valor MAX significa que la habitacion esta mas oscura de lo que se quiere
 		{
 			if(porcentajeCortinaCerrada!=0)	//Chequea que la cortina no este abierta completamente
 			{
@@ -40,7 +43,7 @@ void cortina_controlSensor()
 			if(porcentajeCortinaCerrada != 100)	//Chequea que la cortina no este cerrada completamente
 			{
 				motor_girar_izquierda();
-				porcentajeCortinaCerrada--;
+				porcentajeCortinaCerrada++;
 			}
 		}
 	}

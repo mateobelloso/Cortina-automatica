@@ -2,6 +2,13 @@
    
 static tiempo t;
 
+void reloj_init()
+{
+	t.horas=15;
+	t.minutos=30;
+	t.segundos=0;
+}
+
 void reloj_actualizarHora()   //Funcion que actualiza la hora cada 1 seg
 {
    if (++t.segundos==60)
@@ -18,9 +25,9 @@ void reloj_actualizarHora()   //Funcion que actualiza la hora cada 1 seg
    }
 }
 
-uint8_t reloj_compararHorario(tiempo horario)
+uint8_t reloj_compararHorario(tiempo *horario)
 {
-	if((horario.horas==t.horas) && (horario.minutos==t.minutos))
+	if(((*horario).horas==t.horas) && ((*horario).minutos==t.minutos))
 	{
 		return 1;
 	}
