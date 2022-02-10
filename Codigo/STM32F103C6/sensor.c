@@ -18,7 +18,6 @@ void sensor_init()
 	GPIOA->BSRR |= (1<<2);
 	ADC1->CR2= 1;
 	ADC1->SMPR2= (1<<3);
-	//delay_us(100);
 }
 
 void sensor_medir()
@@ -32,4 +31,9 @@ void sensor_medir()
 uint32_t sensor_get_valor()
 {
 	return valor;
+}
+
+void sensor_desactivar()
+{
+	GPIOA->BRR|= (1<<2);
 }

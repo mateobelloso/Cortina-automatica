@@ -49,18 +49,44 @@ void set_se_envio_comando(uint8_t c)
 	se_envio_comando= c;
 }
 
-uint8_t checkearBluetooth(uint8_t *dato){
-	 uint8_t cadena[20];
-	 uint8_t cantidad,i;
+uint8_t checkearBluetooth(uint8_t *porcentaje, tiempo horaS, tiempo horaB)
+{
+	uint8_t cadena[20];
+	uint8_t cantidad,i;
 	cantidad=remoto_get_string_from_buffer(cadena);
-	 for(i=0;cadena[i] != '\0';i++)
-	{	
-		*dato=*dato*10+cadena[i]-'0';
+	if(cantidad<=3)
+	{
+		*porcentaje= 0;
+		for(i=0;cadena[i] != '\0';i++)
+		{	
+			*porcentaje=*porcentaje * 10 + cadena[i] - '0';
+		}
+	}else
+	{
+		horaS.horas=0;
+		horaS.minutos=0;
+		for(i=0;i<2;i++)
+		{
+			horaS.horas= horaS.horas * 10 + cadena[i] - '0';
+		}
+		for(;i<4;i++)
+		{
+			horaS.minutos= horaS.minutos * 10 + cadena[i] - '0';
+		}
+		horaS.segundos= 0;
+		horaB.horas=0;
+		horaB.minutos=0;
+		for(;i<6;i++)
+		{
+			horaB.horas= horaB.horas * 10 + cadena[i] - '0';
+		}
+		for(;i<8;i++)
+		{
+			horaB.minutos= horaB.minutos * 10 + cadena[i] - '0';
+		}
+		horaB.segundos= 0;
 	}
-	 
-	
-	
-	 return(cantidad);
-   }
-   
+	return(cantidad);
+}
+
    

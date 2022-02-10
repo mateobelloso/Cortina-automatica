@@ -1,27 +1,55 @@
+#include "cortina.h"
+
+static uint8_t cantidadMover;
+static uint8_t porcentajeCortinaCerrada=0;
 
 
-static uint8_t cantidadBajar;
 
-
-
-void posicionarCortina(uint8_t dato)
+void cortina_posicionarCortina(uint8_t porcentaje)
 {
-	    if(dato<porcetajeCortinaCerrada){
-	     {
-		  cantidadBajar=porcentajeCortinaCerrada-dato;
+	if(porcentaje<porcentajeCortinaCerrada)
+	{
+		cantidadMover=porcentajeCortinaCerrada - porcentaje;
+		porcentajeCortinaCerrada= porcentaje;
 		motor_girar_derecha();      //Abrir la cortina (dato-porcentaje), x cantidad de porcentaje que equivale a x segundos para la derecha   
-	    }
-	    else
-	    {
-	       cantidadBajar=dato-porcentajeCortinaCerrada
-	       motor_girar_izquierda();	//Cerra la cortina (dato-porcentaje), x cantidad de porcentaje que equivale a girar x segundos para la izquierda
-	     }
-	  }
+	}else
+	{
+		cantidadMover=porcentaje - porcentajeCortinaCerrada;
+		porcentajeCortinaCerrada= porcentaje;
+		motor_girar_izquierda();	//Cerra la cortina (dato-porcentaje), x cantidad de porcentaje que equivale a girar x segundos para la izquierda
+	}
+}
+
+void cortina_controlSensor()
+{
+	sensor_medir();
+	if((sensor_get_valor()>VALORMIN) && (sensor_get_valor()<VALORMAX))	//Si estoy en el valor deseado detengo la cortina
+	{
+		motor_parar();
+	}else
+	{
+		if(sensor_get_valor()>VALORMAX)	//Si el valor leido por el sensor es mayor que el valor MAX significa que la habitacion esta mas oscura de lo que se quiere
+		{
+			if(porcentajeCortinaCerrada!=0)	//Chequea que la cortina no este abierta completamente
+			{
+				motor_girar_derecha();
+				porcentajeCortinaCerrada--;
+			}
+		}else	//Caso contrario el valor leido es menor que el valor MIN lo que significa que la habitacion tiene mas luz de la deseada
+		{
+			if(porcentajeCortinaCerrada != 100)	//Chequea que la cortina no este cerrada completamente
+			{
+				motor_girar_izquierda();
+				porcentajeCortinaCerrada--;
+			}
+		}
+	}
+}
 	  
-uint8_t cortina_getcantidadBajar(){
-	     
-   return cantidadBajar;
-	  }	
+uint8_t cortina_getCantidadMover()
+{	     
+	return cantidadMover;
+}	
 	       
 	 
    

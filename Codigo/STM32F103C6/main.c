@@ -9,17 +9,18 @@
 
 int main (void)
  { 
-	static uint8_t cadena[20]= "";
-	static uint32_t medida=0;
+	//static uint8_t cadena[20]= "";
+	//static uint32_t medida=0;
 	RCC->APB2ENR|= 0xFC;
 	remoto_init();
 	motor_init();
 	sensor_init();
+	SysTick_Config(SystemCoreClock/10);
    while (1)
 	{
 
-	    sEoS_dispatch_Tareas();
-		sensor_medir();
+	    sEOS_Dispatch_Tareas();
+		/*sensor_medir();
 		medida= sensor_get_valor();
 	   
 		if(get_se_envio_comando())
@@ -38,6 +39,6 @@ int main (void)
 				motor_parar();
 			}
 			set_se_envio_comando(0);
-		}
+		}*/
 	}
  }   
