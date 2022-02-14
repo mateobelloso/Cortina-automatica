@@ -1,7 +1,7 @@
 #include "cortina.h"
 
 static uint8_t cantidadMover;
-static uint8_t porcentajeCortinaCerrada=5;
+static uint8_t porcentajeCortinaCerrada=30;
 
 
 

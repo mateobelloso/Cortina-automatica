@@ -9,37 +9,14 @@
 
 int main (void)
  { 
-	//static uint8_t cadena[20]= "";
-	//static uint32_t medida=0;
-	RCC->APB2ENR|= 0xFC;
-	remoto_init();
-	motor_init();
-	sensor_init();
-	reloj_init();
+	RCC->APB2ENR|= 0xFC;		//Habilita los clocks de los GPIO
+	remoto_init();	//Inicializa el modulo bluetooth
+	motor_init();		//Inicializa el motor
+	sensor_init();	//Inicializa el sensor
+	reloj_init();	//Inicializa el reloj
 	SysTick_Config(SystemCoreClock/10);
    while (1)
 	{
-
-	    sEOS_Dispatch_Tareas();
-		/*sensor_medir();
-		medida= sensor_get_valor();
-	   
-		if(get_se_envio_comando())
-		{
-			remoto_get_string_from_buffer(cadena);
-			if(cadena[0]=='d')
-			{
-				motor_girar_derecha();
-			}
-			if(cadena[0]=='i')
-			{
-				motor_girar_izquierda();
-			}
-			if(cadena[0]=='p')
-			{
-				motor_parar();
-			}
-			set_se_envio_comando(0);
-		}*/
+	    sEOS_Dispatch_Tareas();	//Llama al dispatcher de tareas
 	}
  }   

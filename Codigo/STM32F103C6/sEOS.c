@@ -13,7 +13,7 @@ static uint8_t flag_cortinaLibre=1;
 static uint8_t flag_actualizarHora=0;	//Flag para actulizar la hora
 static uint8_t contadorReloj=0;	//Contador para controlar cuando activar el flag de la tarea del reloj
 
-static uint8_t flag_cortinaCerrada=1;	//Flag que indica que la cortina esta cerrada totalmente en modo automatico
+static uint8_t flag_cortinaCerrada=0;	//Flag que indica que la cortina esta cerrada totalmente en modo automatico
 
 static uint8_t porcentaje;	//Variable que va a contener el porcentaje deseado que ingreso el usuario
 static tiempo horaSubir,horaBajar;	//Variables que almacenan los horarios ingresados por los usuarios
